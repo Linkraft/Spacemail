@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MoveProjectile : MonoBehaviour
 {
+    public float destroyTime = 4f;
     public float speed;
     public float fireRate;
     public GameObject muzzlePrefab;
@@ -32,6 +33,10 @@ public class MoveProjectile : MonoBehaviour
         {
             transform.position += transform.forward * (speed * Time.deltaTime);
         }
+
+        //Destroy projectile after 3 seconds
+        Destroy(gameObject, destroyTime);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -58,4 +63,6 @@ public class MoveProjectile : MonoBehaviour
 
         Destroy(gameObject);
     }
+
+   
 }
