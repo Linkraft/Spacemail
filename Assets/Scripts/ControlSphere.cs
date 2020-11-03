@@ -4,15 +4,23 @@ using UnityEngine;
 
 public class ControlSphere : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private Rigidbody rigidbody;
+
+    private void Start()
     {
-        
+        rigidbody = GetComponent<Rigidbody>();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        //rigidbody.velocity = rigidbody.velocity.normalized;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Hand Contact"))
+        {
+            Physics.IgnoreCollision(this.GetComponent<SphereCollider>(), collision.collider);
+        }
     }
 }
