@@ -6,6 +6,8 @@ TagManager:
   tags:
   - Hand Contact
   - Control Sphere
+  - clone
+  - EnemyAttack
   layers:
   - Default
   - TransparentFX
@@ -42,4 +44,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UI
+    uniqueID: 234080083
     locked: 0

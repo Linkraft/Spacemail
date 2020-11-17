@@ -5,12 +5,14 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     
-    public int health;
+    public float health;
+    public GameObject healthBar;
     public GameObject explodeVFX;
     
+
     void Start()
     {
-        health = 50;
+        health = 100;
     }
 
     void Update()
@@ -18,10 +20,14 @@ public class Enemy : MonoBehaviour
        
     }
 
+   
+
     private void OnCollisionEnter(Collision collision)
     {
         
-        health -= 10;
+        health -= 20;
+        healthBar.transform.localScale = new Vector3(health / 100f, 1, 1);
+        
 
         if (health == 0)
         {

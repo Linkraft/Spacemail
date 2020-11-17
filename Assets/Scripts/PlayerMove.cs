@@ -4,22 +4,46 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
-
     public float speed;
+    public GameObject damageLight;
+
     // Start is called before the first frame update
     void Start()
     {
+        damageLight.SetActive(false);
+
     }
 
     void Update()
     {
+        Move();
+    }
 
-        //get the Input from Horizontal axis
+    void Move()
+    {
         float horizontalInput = Input.GetAxis("Horizontal");
-        //get the Input from Vertical axis
         float verticalInput = Input.GetAxis("Vertical");
 
-        //update the speed
-        transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, 0, verticalInput * speed * Time.deltaTime);
+        transform.position = transform.position + new Vector3(horizontalInput * speed * Time.deltaTime, verticalInput * speed * Time.deltaTime, 0);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("EnemyAttack"))
+        {
+            TakeDamage();
+        }
+    }
+
+    private void TakeDamage()
+    {
+        StartCoroutine(LightFlash(0.08f));
+    }
+
+    IEnumerator LightFlash(float delay)
+    {
+        damageLight.SetActive(true);
+        yield return new WaitForSeconds(delay);
+        damageLight.SetActive(false);
     }
 }

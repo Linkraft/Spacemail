@@ -7,7 +7,7 @@ public class SpawnProjectile : MonoBehaviour
     public GameObject firePoint_L, firePoint_R;
     //public List<GameObject> vfx = new List<GameObject>();
     public GameObject basicAttack, specialAttack;
-    public GameObject laser_L, laser_R;
+    private GameObject laser_L, laser_R;
 
 
     void Start()
