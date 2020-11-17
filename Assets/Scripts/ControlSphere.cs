@@ -4,18 +4,6 @@ using UnityEngine;
 
 public class ControlSphere : MonoBehaviour
 {
-    private Rigidbody rigidbody;
-
-    private void Start()
-    {
-        rigidbody = GetComponent<Rigidbody>();
-    }
-
-    private void Update()
-    {
-        //rigidbody.velocity = rigidbody.velocity.normalized;
-    }
-
     private void OnCollisionEnter(Collision collision)
     {
         if (!collision.gameObject.CompareTag("Hand Contact"))
