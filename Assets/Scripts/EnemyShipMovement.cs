@@ -18,8 +18,7 @@ public class EnemyShipMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        xRange = 50f;
-        yRange = 50f;
+        
         numPoints = 3;
         speed = .5f;
         initialPos = transform.position;
