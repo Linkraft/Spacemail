@@ -32,6 +32,7 @@ public class PlayerMove : MonoBehaviour
         if (other.CompareTag("EnemyAttack"))
         {
             TakeDamage();
+            Debug.Log("Got Hit");
         }
     }
 

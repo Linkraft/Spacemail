@@ -6,6 +6,8 @@ public class EnemyMoveProjectile : MonoBehaviour
 {
     public float speed;
     private float interval, nextTime;
+    public float destroyTime = 4f;
+
     void Start()
     {
         speed = 25f;
@@ -16,7 +18,8 @@ public class EnemyMoveProjectile : MonoBehaviour
     {
        
             transform.position -= transform.up * (speed * Time.deltaTime);
-
+        Destroy(gameObject, destroyTime);
+    
     }
 
     private void OnTriggerEnter(Collider other)

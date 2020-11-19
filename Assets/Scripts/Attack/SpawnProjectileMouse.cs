@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SpawnProjectile : MonoBehaviour
+public class SpawnProjectileMouse : MonoBehaviour
 {
     public GameObject firePoint_L, firePoint_R;
     //public List<GameObject> vfx = new List<GameObject>();
@@ -15,9 +15,23 @@ public class SpawnProjectile : MonoBehaviour
     }
 
     void Update()
-    {       
- 
-         
+    {
+        //LeftMouseButton: Basic Attack
+        if (Input.GetMouseButtonDown(0))
+        {
+            if (firePoint_L != null)
+            {
+                Instantiate(basicAttack, firePoint_L.transform.position, Quaternion.identity);
+            }
+
+            if (firePoint_R != null)
+            {
+                Instantiate(basicAttack, firePoint_R.transform.position, Quaternion.identity);
+            }
+
+            SoundManager.audioSrc.volume = 0.3f;
+            SoundManager.PlaySound("atk1");
+        }
 
 
         //Laser Attack on right mouse button down
@@ -51,26 +65,5 @@ public class SpawnProjectile : MonoBehaviour
 
         }
 
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("Hand Contact"))
-        {
-            Debug.Log("PressedButton");
-            if (firePoint_L != null)
-            {
-                Instantiate(basicAttack, firePoint_L.transform.position, Quaternion.identity);
-            }
-
-            if (firePoint_R != null)
-            {
-                Instantiate(basicAttack, firePoint_R.transform.position, Quaternion.identity);
-            }
-
-            SoundManager.audioSrc.volume = 0.3f;
-            SoundManager.PlaySound("atk1");
-
-        }
     }
 }
