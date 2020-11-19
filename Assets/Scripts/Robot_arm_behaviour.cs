@@ -17,11 +17,16 @@ public class Robot_arm_behaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        roboArm.SetInteger("state", state);
+        //roboArm.SetInteger("state", state);
     }
 
     public void stateChange()
     {
         state = 3;
+    }
+
+    public Animator getAnimator()
+    {
+        return roboArm;
     }
 }

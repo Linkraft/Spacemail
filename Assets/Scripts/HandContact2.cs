@@ -7,7 +7,7 @@ public class HandContact2 : MonoBehaviour
     float distance = 0.1f;
     public GameObject sphereControl;
     public GameObject ship;
-    public float speed = 5f;
+    public float speed = 15f;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +17,11 @@ public class HandContact2 : MonoBehaviour
 
     // Update is called once per frame
     void Update()
+    {
+        originalMovement();
+    }
+
+    public void originalMovement()
     {
         RaycastHit hit;
         Ray ray = new Ray(transform.position, transform.up);
@@ -31,9 +36,13 @@ public class HandContact2 : MonoBehaviour
                 // Debug.Log("HandPosition: " + handPosition);
                 Vector3 handMag = handPosition - spherePosition;
                 Debug.Log("HandMagnitude: " + handMag);
-                sphereControl.transform.localRotation = Quaternion.Euler(handMag.z * 1000, 0, -handMag.x * 1000);
-                ship.transform.position = new Vector3(-sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x  *speed, 0);
+                sphereControl.transform.localRotation = Quaternion.Euler(handMag.z * 2000, 0, -handMag.x * 2000);
+                //ship.transform.position = new Vector3(-sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
+                Vector3 newPos = new Vector3(-sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
+                ship.transform.position = Vector3.Lerp(ship.transform.position, newPos, Time.deltaTime * 1.0f);
             }
         }
     }
+
+    
 }
