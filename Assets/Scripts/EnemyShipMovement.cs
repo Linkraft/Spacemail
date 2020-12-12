@@ -5,45 +5,40 @@ using UnityEngine;
 public class EnemyShipMovement : MonoBehaviour
 {
     // Public
-    public float xRange = 50f;
-    public float yRange = 50f;
-    public float speed = 0.5f;
-
+    public float xRange;
+    public float yRange;
+    public float speed;
+    public int numPoints;
     // Private
-    float fraction;
     Vector3 initialPos;
     List<Vector3> travelPoints;
-    int currIndex, nextIndex, numPoints;
+    int currIndex, nextIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        currIndex = 0;
+        nextIndex = 1;
         numPoints = 3;
-        speed = .5f;
+
         initialPos = transform.position;
         travelPoints = new List<Vector3>();
         GenerateTravelPoints();
 
-        // Set initial positions
-        currIndex = 0;
-        nextIndex = 1;
+        // Set initial position
         transform.position = travelPoints[currIndex];
     }
 
     // Update is called once per frame
     void Update()
-    {
-        if (fraction < 1)
-        {
-            fraction += Time.deltaTime * speed;
-            transform.position = Vector3.Lerp(travelPoints[currIndex], travelPoints[nextIndex], fraction);
+    {   
+        if (transform.position != travelPoints[nextIndex]) {
+            transform.position = Vector3.MoveTowards(transform.position, travelPoints[nextIndex], Time.deltaTime * speed);
         }
         else
         {
-            fraction = 0;
-            currIndex = (currIndex == 2) ? 0 : currIndex + 1;
-            nextIndex = (currIndex == 2) ? 0 : currIndex + 1;
+            currIndex = (currIndex == numPoints - 1) ? 0 : currIndex + 1;
+            nextIndex = (currIndex == numPoints - 1) ? 0 : currIndex + 1;
         }
         
     }
@@ -55,6 +50,7 @@ public class EnemyShipMovement : MonoBehaviour
             // Generate random positions in an XY plane costrained by xRange and yRange
             float randX = Random.Range(initialPos.x - xRange, initialPos.x + xRange);
             float randY = Random.Range(initialPos.y - yRange, initialPos.y + yRange);
+
             Vector3 travelPoint = new Vector3(randX, randY, initialPos.z);
             travelPoints.Add(travelPoint);
         }
