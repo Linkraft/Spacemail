@@ -390,9 +390,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b0535614cd1324b9a52d8c5731c21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRange: 10
-  yRange: 10
-  speed: 5
+  xRange: 5
+  yRange: 5
+  speed: 3
   numPoints: 5
 --- !u!1 &287628780 stripped
 GameObject:
@@ -412,9 +412,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b0535614cd1324b9a52d8c5731c21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRange: 10
-  yRange: 10
-  speed: 5
+  xRange: 5
+  yRange: 5
+  speed: 3
   numPoints: 5
 --- !u!1 &425094840
 GameObject:
@@ -844,9 +844,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7b0535614cd1324b9a52d8c5731c21c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xRange: 10
-  yRange: 10
-  speed: 5
+  xRange: 5
+  yRange: 5
+  speed: 3
   numPoints: 5
 --- !u!1001 &1168408485
 PrefabInstance:
@@ -1360,6 +1360,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: WholeShipFixedUV
+      objectReference: {fileID: 0}
+    - target: {fileID: 5344847853033262508, guid: 84941860ad00224409d488e1554c9dda,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5595176839763605459, guid: 84941860ad00224409d488e1554c9dda,
         type: 3}
