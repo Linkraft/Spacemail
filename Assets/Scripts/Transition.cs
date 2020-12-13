@@ -24,8 +24,9 @@ public class Transition : MonoBehaviour
 
     void LightOff()
     {
-        flashLight.intensity -= lightStep * Time.deltaTime;
-        if ( flashLight.intensity <8 && flashLight.intensity>0)
+        flashLight.intensity -= lightStep*Time.deltaTime;
+        Debug.Log(flashLight.intensity);
+        if ( flashLight.intensity == 0)
         {
             ShowRays();
         }

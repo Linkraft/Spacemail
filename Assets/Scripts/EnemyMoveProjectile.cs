@@ -6,6 +6,8 @@ public class EnemyMoveProjectile : MonoBehaviour
 {
     public float speed;
     private float interval, nextTime;
+    private float destroyTime = 3f;
+
     void Start()
     {
         speed = 25f;
@@ -14,9 +16,9 @@ public class EnemyMoveProjectile : MonoBehaviour
 
     void Update()
     {
-       
-            transform.position -= transform.up * (speed * Time.deltaTime);
-
+        transform.position -= transform.up * (speed * Time.deltaTime);
+        //Destroy projectile after 3 seconds
+        Destroy(gameObject, destroyTime);
     }
 
     private void OnTriggerEnter(Collider other)
