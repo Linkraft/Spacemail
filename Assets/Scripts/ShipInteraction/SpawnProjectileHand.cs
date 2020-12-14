@@ -9,6 +9,7 @@ public class SpawnProjectileHand : MonoBehaviour
     public GameObject basicAttack, specialAttack;
     private GameObject laser_L, laser_R;
 
+    public Animator anim1, anim2;
 
     void Start()
     {
@@ -53,15 +54,17 @@ public class SpawnProjectileHand : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("HandContact"))
+        //if(other.CompareTag("HandContact"))
         if (firePoint_L != null)
         {
             Instantiate(basicAttack, firePoint_L.transform.position, Quaternion.identity);
+                anim1.SetTrigger("Fire_1");
         }
 
         if (firePoint_R != null)
         {
             Instantiate(basicAttack, firePoint_R.transform.position, Quaternion.identity);
+            anim2.SetTrigger("Fire_1");
         }
         //animate
         Animator test = GameObject.Find("Robot_arm").GetComponent<Animator>();
