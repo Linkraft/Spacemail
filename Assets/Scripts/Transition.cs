@@ -7,7 +7,7 @@ public class Transition : MonoBehaviour
     public Light flashLight;
     public GameObject ray;
     Animator animator;
-    public int lightStep = 10;
+    public float lightStep = 800f;
 
     void Start()
     {
@@ -25,7 +25,7 @@ public class Transition : MonoBehaviour
     void LightOff()
     {
         flashLight.intensity -= lightStep*Time.deltaTime;
-        Debug.Log(flashLight.intensity);
+        
         if ( flashLight.intensity == 0)
         {
             ShowRays();
