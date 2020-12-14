@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightSwitch : MonoBehaviour
 {
-    public Color[] colors;
+    private Color[] colors = new Color[4];
     public Light interiorLight;
     private int currentIndex = 0;
     public ShipInteraction shipInteraction;
@@ -29,22 +29,18 @@ public class LightSwitch : MonoBehaviour
         Debug.Log("collide (name) : " + other.gameObject.name);
 
         LightChange();
-        shipInteraction.isColor = true;
     }
 
 
     void LightChange()
     {
-
+        //Debug.Log("CurrIndex " + currentIndex);
         currentIndex += 1;
-        Debug.Log("CurrIndex " + currentIndex);
 
         if (currentIndex == 4)
             currentIndex = 0;
 
-        if (currentIndex == -1)
-            currentIndex = 3;
-
+        shipInteraction.isColor = true;
         interiorLight.color = colors[currentIndex];
     }
 }

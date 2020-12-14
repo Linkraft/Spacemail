@@ -42,6 +42,8 @@ public class ShipInteraction : MonoBehaviour
         animator.SetBool("isIdle", true);
         animator.SetBool("isNext", false);
         animator.SetBool("isPrevious", false);
+        animator.SetBool("isColor", false);
+
         isNext = false;
         isPrevious = false;
         isColor = false;
