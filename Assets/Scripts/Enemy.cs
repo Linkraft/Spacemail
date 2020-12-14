@@ -8,7 +8,8 @@ public class Enemy : MonoBehaviour
     public float health;
     public GameObject healthBar;
     public GameObject explodeVFX;
-    
+    public GameObject loot;
+
 
     void Start()
     {
@@ -17,7 +18,7 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-       
+
     }
 
    
@@ -34,7 +35,12 @@ public class Enemy : MonoBehaviour
             SoundManager.audioSrc.volume = 1.8f;
             SoundManager.PlaySound("explode");
             Instantiate(explodeVFX, transform.position, transform.rotation);
-            Debug.Log("Explode");
+            for(int i = 0; i<5; i++)
+            {
+                Instantiate(loot, transform.position + (new Vector3(Random.Range(-2f, 2f), Random.Range(-0.4f, 1f), Random.Range(-0.4f, 1f))), transform.rotation);
+
+            }
+
 
             Destroy(gameObject);
         }

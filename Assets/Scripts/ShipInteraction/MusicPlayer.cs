@@ -13,7 +13,7 @@ public class MusicPlayer : MonoBehaviour
 
     void Start()
     {
-        SoundManager.PlaySound("music1");
+        SoundManager.PlayMusic("music1");
         MusicList[0] = "music1";
         MusicList[1] = "music2";
         MusicList[2] = "music3";
@@ -49,9 +49,9 @@ public class MusicPlayer : MonoBehaviour
         currentIndex += 1;
         CheckBound();
         shipInteraction.isNext = true;
-        SoundManager.audioSrc.Stop();
+        SoundManager.BGMSrc.Stop();
 
-        SoundManager.PlaySound(MusicList[currentIndex]);
+        SoundManager.PlayMusic(MusicList[currentIndex]);
 
     }
 
@@ -61,9 +61,9 @@ public class MusicPlayer : MonoBehaviour
         currentIndex -= 1;
         CheckBound();
         shipInteraction.isPrevious = true;
-        SoundManager.audioSrc.Stop();
+        SoundManager.BGMSrc.Stop();
 
-        SoundManager.PlaySound(MusicList[currentIndex]);
+        SoundManager.PlayMusic(MusicList[currentIndex]);
 
 
     }

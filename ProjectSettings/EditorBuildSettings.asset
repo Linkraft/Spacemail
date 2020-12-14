@@ -4,7 +4,19 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: c30e95f7bdf2f5b4284dc81984e77fc8
+  - enabled: 1
+    path: Assets/Scenes/First Battle.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/FirstTransition.unity
+    guid: b227137d78582814cbcbd3679a362f90
+  - enabled: 1
+    path: Assets/Scenes/FireScene.unity
+    guid: 590fc54546da02d4589144199aa1f317
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9f1f0f73f2ecadf459c7ab66843cf10c,
       type: 2}

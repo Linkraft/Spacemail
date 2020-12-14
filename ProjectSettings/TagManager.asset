@@ -9,6 +9,8 @@ TagManager:
   - clone
   - EnemyAttack
   - MenuCollider
+  - Collector
+  - Resources
   layers:
   - Default
   - TransparentFX

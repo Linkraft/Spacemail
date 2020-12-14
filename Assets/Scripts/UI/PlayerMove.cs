@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerMove : MonoBehaviour
 {
@@ -10,6 +11,17 @@ public class PlayerMove : MonoBehaviour
     public GameObject damageLight;
     public GameObject hull;
     public GameObject glass;
+
+    //Resources
+    public int score;
+    public GameObject progressBar;
+
+    //SceneTransition
+    public Light flashLight;
+    public float lightStep;
+    public GameObject ray;
+    public GameObject scene;
+
 
     public GameObject smokeOne;
     public GameObject smokeTwo;
@@ -44,6 +56,18 @@ public class PlayerMove : MonoBehaviour
     {
         // Move();
         //TakeDamage();
+        Debug.Log("Score= " + score);
+
+        if (score == 20)
+        {
+            Destroy(scene);
+            ExitScene();
+        }
+
+        if (flashLight.intensity > 80)
+        {
+            SceneManager.LoadScene(2);
+        }
     }
 
     void Move()
@@ -61,6 +85,13 @@ public class PlayerMove : MonoBehaviour
             health++;
             TakeDamage();
             Debug.Log("Your fucked");
+        }
+
+        if (other.CompareTag("Resources"))
+        {
+            score += 2;
+            progressBar.transform.localScale = new Vector3(score/100f, 1, 1);
+
         }
     }
 
@@ -82,10 +113,36 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+
+    void ExitScene()
+    {
+        ShowRays();
+        StartCoroutine(ExecuteAfterTime(1f));
+    }
+
+    void LightOn()
+    {
+        Debug.Log("FlashLight");
+        flashLight.intensity += lightStep * Time.deltaTime;
+
+    }
+
+    void ShowRays()
+    {
+        Debug.Log("Rays");
+        ray.SetActive(true);
+    }
+
     IEnumerator LightFlash(float delay)
     {
         damageLight.SetActive(true);
         yield return new WaitForSeconds(delay);
         damageLight.SetActive(false);
+    }
+
+    IEnumerator ExecuteAfterTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        LightOn();
     }
 }

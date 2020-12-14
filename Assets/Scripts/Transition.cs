@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Transition : MonoBehaviour
 {
@@ -13,7 +14,9 @@ public class Transition : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         ray.SetActive(false);
-        StartCoroutine(ExecuteAfterTime(0.9f));
+        StartCoroutine(ExecuteAfterTime(0.6f));
+        StartCoroutine(NextScene(3.3f));
+
     }
 
     // Update is called once per frame
@@ -46,5 +49,11 @@ public class Transition : MonoBehaviour
     {
         yield return new WaitForSeconds(time);
         MoveShip();
+    }
+
+    IEnumerator NextScene(float time)
+    {
+        yield return new WaitForSeconds(time);
+        SceneManager.LoadScene(3);
     }
 }

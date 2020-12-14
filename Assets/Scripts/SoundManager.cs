@@ -10,9 +10,9 @@ public class SoundManager : MonoBehaviour
     //Interactions
     public static AudioClip music1, music2, music3;
 
-    public static AudioSource audioSrc;
+    public static AudioSource audioSrc, BGMSrc;
 
-    void Start()
+    private void Awake()
     {
         atk1 = Resources.Load<AudioClip>("atk1");
         atk2 = Resources.Load<AudioClip>("atk2");
@@ -25,7 +25,10 @@ public class SoundManager : MonoBehaviour
         music3 = Resources.Load<AudioClip>("music3");
 
         audioSrc = GetComponent<AudioSource>();
+        BGMSrc = GetComponent<AudioSource>();
+
     }
+
 
     void Update()
     {
@@ -34,7 +37,8 @@ public class SoundManager : MonoBehaviour
 
     public static void PlaySound(string clip)
     {
-        switch (clip) {
+        switch (clip)
+        {
             case "atk1":
                 audioSrc.PlayOneShot(atk1);
                 break;
@@ -51,19 +55,26 @@ public class SoundManager : MonoBehaviour
                 audioSrc.PlayOneShot(explode);
                 break;
 
-            case "music1":
-                audioSrc.PlayOneShot(music1);
-                break;
-            case "music2":
-                audioSrc.PlayOneShot(music2);
-                break;
-            case "music3":
-                audioSrc.PlayOneShot(music3);
-                break;
+        }
+    }
+
+        public static void PlayMusic(string clip)
+        {
+            switch (clip)
+            {
+                case "music1":
+                   BGMSrc.PlayOneShot(music1);
+                    break;
+                case "music2":
+                    BGMSrc.PlayOneShot(music2);
+                    break;
+                case "music3":
+                    BGMSrc.PlayOneShot(music3);
+                    break;
+
+            }
 
         }
-
-    }
 
 
 
