@@ -5,25 +5,22 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    // Update is called once per frame
-    void Update()
+    public void LoadScreen(GameObject screen)
     {
-        // Rotate Skybox
-        RenderSettings.skybox.SetFloat("_Rotation", Time.time);
+        Debug.Log("Loading..");
+        screen.SetActive(true);
+        StartCoroutine(Load(screen));
     }
 
-    public void StartGame()
+    IEnumerator Load(GameObject screen)
     {
-        SceneManager.LoadScene("First Battle");
-    }
-
-    public void ShowControls()
-    {
-
-    }
-
-    public void ExitGame()
-    {
-        Application.Quit();
+        BoxCollider[] colliders = screen.GetComponentsInChildren<BoxCollider>();
+        Debug.Log("Disabling colliders");
+        foreach (BoxCollider collider in colliders)
+            collider.enabled = false;
+        yield return new WaitForSeconds(1f);
+        Debug.Log("Reenabling colliders");
+        foreach (BoxCollider collider in colliders)
+            collider.enabled = true;
     }
 }

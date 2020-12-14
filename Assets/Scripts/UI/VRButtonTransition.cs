@@ -8,8 +8,7 @@ public class VRButtonTransition : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("Transitioning to screen " + screen.name);
-        screen.SetActive(true);
-        StartCoroutine(screen.GetComponent<MenuScreen>().LoadScreen());
+        FindObjectOfType<MainMenu>().LoadScreen(screen);
         this.transform.parent.GetComponent<SpriteRenderer>().color = Color.white;
         this.transform.parent.parent.gameObject.SetActive(false);
     }
