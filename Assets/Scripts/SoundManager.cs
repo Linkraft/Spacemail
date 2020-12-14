@@ -27,6 +27,7 @@ public class SoundManager : MonoBehaviour
         audioSrc = GetComponent<AudioSource>();
         BGMSrc = GetComponent<AudioSource>();
 
+        DontDestroyOnLoad(this.gameObject);
     }
 
 

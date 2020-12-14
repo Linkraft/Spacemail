@@ -13,7 +13,10 @@ public class MusicPlayer : MonoBehaviour
 
     void Start()
     {
-        SoundManager.PlayMusic("music1");
+        if (!SoundManager.BGMSrc.isPlaying)
+        {
+            SoundManager.PlayMusic("music1");
+        }
         MusicList[0] = "music1";
         MusicList[1] = "music2";
         MusicList[2] = "music3";

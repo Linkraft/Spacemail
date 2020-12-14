@@ -30,6 +30,8 @@ public class ShipInteraction : MonoBehaviour
         if (isColor == true)
         {
             animator.SetBool("isColor", true);
+            StartCoroutine(ExecuteAfterTime(0.2f));
+
         }
     }
 
