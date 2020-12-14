@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class SoundManager : MonoBehaviour
 {
+    //Battle
     public static AudioClip atk1, atk2, atkHit1, atkHit2, explode;
+
+    //Interactions
+    public static AudioClip music1, music2, music3;
+
     public static AudioSource audioSrc;
 
     void Start()
@@ -14,6 +19,10 @@ public class SoundManager : MonoBehaviour
         atkHit1 = Resources.Load<AudioClip>("atkHit1");
         atkHit2 = Resources.Load<AudioClip>("atkHit2");
         explode = Resources.Load<AudioClip>("explode");
+
+        music1 = Resources.Load<AudioClip>("music1");
+        music2 = Resources.Load<AudioClip>("music2");
+        music3 = Resources.Load<AudioClip>("music3");
 
         audioSrc = GetComponent<AudioSource>();
     }
@@ -42,9 +51,20 @@ public class SoundManager : MonoBehaviour
                 audioSrc.PlayOneShot(explode);
                 break;
 
+            case "music1":
+                audioSrc.PlayOneShot(music1);
+                break;
+            case "music2":
+                audioSrc.PlayOneShot(music2);
+                break;
+            case "music3":
+                audioSrc.PlayOneShot(music3);
+                break;
+
         }
 
     }
+
 
 
 }
