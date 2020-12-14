@@ -5,18 +5,45 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     public float speed;
-    public GameObject damageLight;
+    public int health = 0;
 
+    public GameObject damageLight;
+    public GameObject hull;
+    public GameObject glass;
+
+    public GameObject smokeOne;
+    public GameObject smokeTwo;
+
+    Material hullDamagedMat;
+    Material screensDamageMat;
+    Material glassDamage;
+
+
+    private Material[] hullMaterials;
+    private Material glassMaterial;
+    MeshRenderer hullRenderer;
+    MeshRenderer glassRenderer;
     // Start is called before the first frame update
     void Start()
     {
+        hullDamagedMat = Resources.Load<Material>("BrokenHull");
+        screensDamageMat = Resources.Load<Material>("BrokenScreen");
+        glassDamage = Resources.Load<Material>("BrokenGlass");
+
         damageLight.SetActive(false);
+
+        hullRenderer = hull.GetComponent<MeshRenderer>();
+        hullMaterials = hullRenderer.materials;
+
+        glassRenderer = glass.GetComponent<MeshRenderer>();
+        glassMaterial = glassRenderer.material;
 
     }
 
     void Update()
     {
-       // Move();
+        // Move();
+        //TakeDamage();
     }
 
     void Move()
@@ -31,13 +58,28 @@ public class PlayerMove : MonoBehaviour
     {
         if (other.CompareTag("EnemyAttack"))
         {
+            health++;
             TakeDamage();
+            Debug.Log("Your fucked");
         }
     }
 
     private void TakeDamage()
     {
-        StartCoroutine(LightFlash(0.08f));
+        if (health > 5)
+        {
+            Debug.Log("Health Low");
+            StartCoroutine(LightFlash(0.08f));
+            hullMaterials[0] = hullDamagedMat;
+            hullMaterials[1] = screensDamageMat;
+            hullRenderer.materials = hullMaterials;
+
+            glassMaterial = glassDamage;
+            glassRenderer.material = glassMaterial;
+
+            smokeOne.gameObject.SetActive(true);
+            smokeTwo.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator LightFlash(float delay)
