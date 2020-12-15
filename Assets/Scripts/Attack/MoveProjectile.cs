@@ -9,6 +9,7 @@ public class MoveProjectile : MonoBehaviour
     public float fireRate;
     public GameObject muzzlePrefab;
     public GameObject hitPrefab;
+    public GameObject target;
 
 
     void Start()
@@ -29,9 +30,11 @@ public class MoveProjectile : MonoBehaviour
 
     void Update()
     {
+        target = GameObject.Find("ShipFinal/BulletTarget");
         if (speed != 0)
         {
-            transform.position += transform.forward * (speed * Time.deltaTime);
+            //transform.position += transform.forward * (speed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, target.transform.position, speed * Time.deltaTime);
         }
 
         //Destroy projectile after 3 seconds

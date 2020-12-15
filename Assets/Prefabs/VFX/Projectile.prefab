@@ -48,12 +48,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5c7fa8f29817943a0c3e071347250a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyTime: 4
   speed: 20
   fireRate: 4
   muzzlePrefab: {fileID: 9155021677436928368, guid: 8e19415eb03063f45946d416d67a6d04,
     type: 3}
   hitPrefab: {fileID: 3441394946252653019, guid: b24f349e822ccf94fb5dfa0ba195e064,
     type: 3}
+  target: {fileID: 6211037491001794446, guid: 51a1b32f00887954fad889c3fa823714, type: 3}
 --- !u!65 &9220169870206469843
 BoxCollider:
   m_ObjectHideFlags: 0
