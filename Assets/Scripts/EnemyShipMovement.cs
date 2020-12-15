@@ -5,10 +5,9 @@ using UnityEngine;
 public class EnemyShipMovement : MonoBehaviour
 {
     // Public
-    public float xRange;
-    public float yRange;
-    public float speed;
+    public float xRange, yRange, speed;
     public int numPoints;
+
     // Private
     Vector3 initialPos;
     List<Vector3> travelPoints;
@@ -40,7 +39,6 @@ public class EnemyShipMovement : MonoBehaviour
             currIndex = (currIndex == numPoints - 1) ? 0 : currIndex + 1;
             nextIndex = (currIndex == numPoints - 1) ? 0 : currIndex + 1;
         }
-        
     }
 
     void GenerateTravelPoints()

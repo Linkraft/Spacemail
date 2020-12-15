@@ -8,6 +8,8 @@ public class HandContact2 : MonoBehaviour
     public GameObject sphereControl;
     public GameObject ship;
     public float speed = 15f;
+    public float zDistance, zSpeed;
+    float currZDistance;
 
     // Start is called before the first frame update
     void Start()
@@ -36,11 +38,25 @@ public class HandContact2 : MonoBehaviour
                 // Debug.Log("HandPosition: " + handPosition);
                 Vector3 handMag = handPosition - spherePosition;
                 Debug.Log("HandMagnitude: " + handMag);
-                sphereControl.transform.localRotation = Quaternion.Euler(handMag.z * 2000, 0, -handMag.x * 2000);
+
+                //Original Movement
+                //sphereControl.transform.localRotation = Quaternion.Euler(handMag.z * 2000, 0, -handMag.x * 2000);
+                //Vector3 newPos = new Vector3(sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
+
+                //Global Movement
+                sphereControl.transform.Rotate((handMag.z + handMag.y) * 10, 0, -handMag.x * 10, Space.World);
+                Vector3 newPos = new Vector3(sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
+
                 //ship.transform.position = new Vector3(-sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
-                Vector3 newPos = new Vector3(sphereControl.transform.rotation.z * speed, -sphereControl.transform.rotation.x * speed, 0);
                 ship.transform.position = Vector3.Lerp(ship.transform.position, newPos, Time.deltaTime * 1.0f);
             }
+        }
+
+
+        if (currZDistance < zDistance)
+        {
+            ship.transform.Translate(0, 0, zSpeed * Time.deltaTime);
+            currZDistance += zSpeed * Time.deltaTime;
         }
     }
 

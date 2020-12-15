@@ -29,13 +29,6 @@ public class ShipMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-/*        if (ship.transform.position == nextPos)
-        {
-            ship.transform.position = nextPos;
-            index = (index == 2) ? 0 : index + 1;
-            nextPos = travelPoints[index];
-        }*/
-        //Vector3.MoveTowards(ship.transform.position, nextPos, 5f * Time.deltaTime);
         ship.transform.position = Vector3.Lerp(travelPoints[currIndex], travelPoints[nextIndex], 5f);
         time += Time.deltaTime;
         
