@@ -8,7 +8,7 @@ public class SoundManager : MonoBehaviour
     public static AudioClip atk1, atk2, atkHit1, atkHit2, explode;
 
     //Interactions
-    public static AudioClip music1, music2, music3;
+    public static AudioClip music1, music2, music3, music4, music5;
 
     public static AudioSource audioSrc, BGMSrc;
 
@@ -23,6 +23,8 @@ public class SoundManager : MonoBehaviour
         music1 = Resources.Load<AudioClip>("music1");
         music2 = Resources.Load<AudioClip>("music2");
         music3 = Resources.Load<AudioClip>("music3");
+        music4 = Resources.Load<AudioClip>("music4");
+        music5 = Resources.Load<AudioClip>("music5");
 
         audioSrc = GetComponent<AudioSource>();
         BGMSrc = GetComponent<AudioSource>();
@@ -72,8 +74,14 @@ public class SoundManager : MonoBehaviour
                 case "music3":
                     BGMSrc.PlayOneShot(music3);
                     break;
+                case "music4":
+                    BGMSrc.PlayOneShot(music4);
+                    break;
+                case "music5":
+                    BGMSrc.PlayOneShot(music5);
+                    break;
 
-            }
+        }
 
         }
 

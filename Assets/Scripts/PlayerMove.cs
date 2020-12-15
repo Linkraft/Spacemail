@@ -56,7 +56,7 @@ public class PlayerMove : MonoBehaviour
     {
         // Move();
         //TakeDamage();
-        Debug.Log("Score= " + score);
+       // Debug.Log("Score= " + score);
 
         if (score == 20)
         {
