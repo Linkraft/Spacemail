@@ -11,6 +11,11 @@ public class Lever : MonoBehaviour
     float minAngle, maxAngle, deltaAngle, rotationSpeed;
     bool resetting;
 
+    //Laser
+    public GameObject firePoint_L, firePoint_R;
+    public GameObject specialAttack;
+    private GameObject laser_L, laser_R;
+
     private void Start()
     {
         initPos = transform.localPosition;
@@ -30,6 +35,7 @@ public class Lever : MonoBehaviour
             Debug.Log("Resetting! " + currRot);
             if (currRot.x >= maxAngle)
             {
+                //SoundManager.audioSrc.Stop();
                 Debug.Log("Stopped resetting!");
                 collider.enabled = true;
                 rb.angularVelocity = Vector3.zero;
@@ -52,6 +58,21 @@ public class Lever : MonoBehaviour
                 if (currRot.x < minAngle)
                 {
                     //Laser Here
+                    if (firePoint_L != null)
+                    {
+                        laser_L = Instantiate(specialAttack, firePoint_L.transform.position, Quaternion.identity);
+                    }
+
+                    if (firePoint_R != null)
+                    {
+                        laser_R = Instantiate(specialAttack, firePoint_R.transform.position, Quaternion.identity);
+                    }
+
+                    //Play sound
+                    SoundManager.PlaySound("atk2");
+                    SoundManager.audioSrc.loop = true;
+
+                    StartCoroutine(StopLaser());
 
                     //Debug.Log("Moving to " + minAngle + " from " + currRot.x + "!");
                     currRot.x = minAngle;
@@ -70,5 +91,12 @@ public class Lever : MonoBehaviour
             }
         }
         transform.localPosition = initPos;
+    }
+
+    IEnumerator StopLaser()
+    {
+        yield return new WaitForSeconds(3);
+        Destroy(laser_L);
+        Destroy(laser_R);
     }
 }
