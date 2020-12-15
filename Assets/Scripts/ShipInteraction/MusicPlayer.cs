@@ -35,7 +35,7 @@ public class MusicPlayer : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("collide (name) : " + other.gameObject.name);
+       // Debug.Log("collide (name) : " + other.gameObject.name);
 
         if (this.gameObject.name == "nextButton")
             PlayNext();

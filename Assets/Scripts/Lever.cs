@@ -13,7 +13,7 @@ public class Lever : MonoBehaviour
 
     private void Start()
     {
-        initPos = transform.position;
+        initPos = transform.localPosition;
         initRot = transform.rotation;
         rb = GetComponent<Rigidbody>();
         collider = GetComponent<BoxCollider>();
@@ -45,10 +45,14 @@ public class Lever : MonoBehaviour
         }
         else
         {
+            // Movable
+            if (rb.angularVelocity.x > 1) rb.angularVelocity = new Vector3(1, rb.angularVelocity.y, rb.angularVelocity.z);
             if (currRot.x < minAngle || maxAngle < currRot.x)
             {
                 if (currRot.x < minAngle)
                 {
+                    //Laser Here
+
                     //Debug.Log("Moving to " + minAngle + " from " + currRot.x + "!");
                     currRot.x = minAngle;
                     resetting = true;
@@ -65,6 +69,6 @@ public class Lever : MonoBehaviour
                 if (resetting) downRot = transform.rotation;
             }
         }
-        transform.position = initPos;
+        transform.localPosition = initPos;
     }
 }
