@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class HandContact2 : MonoBehaviour
 {
-    float distance = 0.5f;
+    float distance = 0.1f;
     public GameObject sphereControl;
     public GameObject ship;
     public float speed = 15f;
@@ -40,12 +40,12 @@ public class HandContact2 : MonoBehaviour
                 Debug.Log("HandMagnitude: " + handMag);
 
                 //Original Movement
-                //sphereControl.transform.localRotation = Quaternion.Euler(handMag.z * 2000, 0, -handMag.x * 2000);
-                //Vector3 newPos = new Vector3(sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
+                sphereControl.transform.localRotation = Quaternion.Euler(handMag.z * 2000, 0, -handMag.x * 2000);
+                Vector3 newPos = new Vector3(sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
 
                 //Global Movement
-                sphereControl.transform.Rotate((handMag.z + handMag.y) * 10, 0, -handMag.x * 10, Space.World);
-                Vector3 newPos = new Vector3(sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
+                //sphereControl.transform.Rotate((handMag.z + handMag.y) * 10, 0, -handMag.x * 10, Space.World);
+                //Vector3 newPos = new Vector3(sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
 
                 //ship.transform.position = new Vector3(-sphereControl.transform.rotation.z * speed, sphereControl.transform.rotation.x * speed, 0);
                 ship.transform.position = Vector3.Lerp(ship.transform.position, newPos, Time.deltaTime * 1.0f);
